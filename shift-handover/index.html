@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#121c23">
   <title>Принимаем смену</title>
-  <script defer src="./assets/index-95hmatH2.js"></script>
-  <link rel="stylesheet" href="./assets/style-DWAUsX65.css">
+  <script defer src="./assets/index-CT26naqb.js"></script>
+  <link rel="stylesheet" href="./assets/style-BDBNS6B1.css">
 </head>
 <body>
   <main id="app">
@@ -72,10 +72,12 @@
       <button id="dialogue-next" class="primary" type="button" disabled>Перейти к приёмке <span aria-hidden="true">→</span></button>
     </section>
     <div id="welcome" class="entry" hidden>
-      <div class="entry-card">
-        <p>Сверьте сведения сдающего, проверьте рабочее место и комплекс. Оформите результаты и решите, можно ли приступать к работе.</p>
-        <div class="entry-actions"><button id="enter" class="primary" type="button">Штатная приёмка <span aria-hidden="true">→</span></button>
-        <button id="enter-cable" class="secondary" type="button">Незакрытое замечание</button></div>
+      <button id="enter" class="primary" type="button">Начать</button>
+    </div>
+    <div id="completion" class="entry" hidden>
+      <div class="completion-card">
+        <h2 id="completion-title" tabindex="-1">Вы молодец!</h2>
+        <button id="restart" class="primary" type="button">Начать заново</button>
       </div>
     </div>
     <div id="loading" class="loading" role="status"><span></span>Открываем рабочее место</div>
