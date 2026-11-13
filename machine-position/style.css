@@ -73,8 +73,7 @@ body {
   box-shadow: 0 1px 2px #213a5514;
 }
 
-.mode-picker input:focus-visible + span,
-.journal-original summary:focus-visible {
+.mode-picker input:focus-visible + span {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
 }
@@ -217,50 +216,6 @@ body {
 .journal-blank {
   margin-bottom: 2px;
   border-bottom: 1px solid #6e829a;
-}
-
-.journal-original { margin-top: 8px; }
-
-.journal-original summary {
-  width: fit-content;
-  min-height: 28px;
-  padding-block: 4px;
-  color: var(--accent);
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.journal-original summary:hover { text-decoration: underline; }
-
-.journal-scan {
-  position: relative;
-  max-width: 550px;
-  aspect-ratio: 743 / 212;
-  margin-top: 7px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-}
-
-.journal-scan img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  /* Keep the target row and its two neighbors in view. */
-  transform: translateY(-23.8%);
-}
-
-.journal-scan::after {
-  position: absolute;
-  inset: 32% 1% 42%;
-  border: 1px solid #4583c1;
-  border-radius: 4px;
-  background: #77ace622;
-  content: "";
-  pointer-events: none;
 }
 
 @media (max-width: 440px) {
