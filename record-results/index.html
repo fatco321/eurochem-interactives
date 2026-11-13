@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Куда записать результаты</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="practice">
+    <section class="exercise" aria-labelledby="question">
+      <header class="prompt">
+        <h1 id="question">Куда внесёте запись?</h1>
+        <p class="situation" id="situation" tabindex="-1">Вы проверили защиту от утечки тока. Специальная доска для записи результатов есть.</p>
+      </header>
+
+      <div class="places" role="group" aria-labelledby="question">
+        <button type="button" data-place="board">
+          <span class="place-icon place-icon-board" aria-hidden="true"></span>
+          <span class="place-name">Специальная доска</span>
+          <span class="place-state" aria-hidden="true"></span>
+        </button>
+        <button type="button" data-place="operations">
+          <span class="place-icon place-icon-book" aria-hidden="true"></span>
+          <span>
+            <span class="place-name">Оперативный журнал</span>
+            <span class="place-detail">на электросборке комплекса</span>
+          </span>
+          <span class="place-state" aria-hidden="true"></span>
+        </button>
+        <button type="button" data-place="handover">
+          <span class="place-icon place-icon-record" aria-hidden="true"></span>
+          <span>
+            <span class="place-name">Журнал приёма и сдачи смен</span>
+            <span class="place-detail">на комбайне</span>
+          </span>
+          <span class="place-state" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+      <footer class="exercise-footer">
+        <div class="actions" hidden>
+          <button class="primary next" type="button">Следующая ситуация</button>
+          <button class="restart" type="button" hidden>Пройти ещё раз</button>
+        </div>
+        <details class="rules">
+          <summary>Правила записи</summary>
+          <div class="rules-content">
+            <ul>
+              <li>Результат проверки защиты от утечки тока запишите на специальной доске и подтвердите личной подписью. Если доски нет, внесите результат в оперативный журнал на электросборке комплекса.</li>
+              <li>Результаты проверки стационарных газоанализаторов, полуавтоматического и дистанционного управления комбайном внесите в журнал приёма и сдачи смен на комбайне.</li>
+              <li>В тот же журнал внесите результат проверки устройства АПТВ или его аналога, если устройство предусмотрено проектом проветривания.</li>
+            </ul>
+            <p>РИ 10-2/09, п. 4.8.</p>
+          </div>
+        </details>
+      </footer>
+    </section>
+
+    <noscript>Для выбора ответа включите JavaScript.</noscript>
+  </main>
+</body>
+</html>

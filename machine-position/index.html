@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Положение комбайна</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="position">
+    <fieldset class="mode-picker">
+      <legend class="visually-hidden">Вид работ</legend>
+      <label>
+        <input class="visually-hidden" type="radio" name="work-type" value="dead-end" aria-controls="plan" checked>
+        <span>Тупиковый забой</span>
+      </label>
+      <label>
+        <input class="visually-hidden" type="radio" name="work-type" value="crosscut" aria-controls="plan">
+        <span>Подрубка</span>
+      </label>
+    </fieldset>
+
+    <figure class="plan" id="plan">
+      <div class="plan-labels" aria-hidden="true">
+        <span data-plan="dead-end">Последние маркшейдерские точки</span>
+        <span data-plan="crosscut" hidden>Устье камеры</span>
+        <span>Распор комбайна</span>
+      </div>
+      <svg class="plan-drawing" viewBox="0 0 640 194" aria-hidden="true">
+        <defs>
+          <pattern id="rock" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+            <path d="M0 0V8" stroke="#b8c8db" stroke-opacity=".45"/>
+          </pattern>
+          <pattern id="track" width="10" height="8" patternUnits="userSpaceOnUse">
+            <path d="M2 0V8" stroke="#8293a9" stroke-opacity=".65" stroke-width="2"/>
+          </pattern>
+          <path id="dead-end-floor" d="M-4 54H100L123 57H208L231 54H335L354 57H455L475 54H570Q591 54 606 68L618 88V107L607 125Q597 140 573 140H476L453 137H349L326 140H231L206 137H128L104 140H-4Z"/>
+          <path id="crosscut-floor" d="M45 -10H160V57H208L231 54H335L354 57H455L475 54H570Q591 54 606 68L618 88V107L607 125Q597 140 573 140H476L453 137H349L326 140H231L206 137H160V203H45Z"/>
+        </defs>
+
+        <path d="M0 23H640V194H0Z" fill="url(#rock)"/>
+        <path class="rock-contour" d="M0 38H111L134 41H286L310 38H439L468 41H574Q609 40 628 65L640 79M0 153H112L137 155H286L306 153H442L467 155H573Q610 155 629 129L640 116"/>
+        <g data-plan="dead-end">
+          <use href="#dead-end-floor" class="wall-shadow"/>
+          <use href="#dead-end-floor" class="floor"/>
+          <path class="floor-trace" d="M-4 73H306M-4 123H308"/>
+        </g>
+        <g data-plan="crosscut" hidden>
+          <use href="#crosscut-floor" class="wall-shadow"/>
+          <use href="#crosscut-floor" class="floor"/>
+          <path class="floor-trace" d="M68 0V194M137 0V194M178 73H306M178 123H308"/>
+        </g>
+
+        <path class="guide" d="M160 7V176M480 7V176"/>
+        <g data-plan="dead-end">
+          <circle class="survey-point" cx="160" cy="57" r="5.5"/>
+          <circle class="survey-point" cx="160" cy="137" r="5.5"/>
+        </g>
+        <g data-plan="crosscut" hidden>
+          <path class="mouth-line" d="M160 57V137"/>
+          <path class="measure" d="M153 57h14M153 137h14"/>
+        </g>
+
+        <g class="machine">
+          <path class="machine-shadow" d="M330 66H529L553 75H583L600 87V109L583 121H552L529 130H330Z"/>
+          <rect class="machine-track" x="333" y="65" width="202" height="14" rx="6"/>
+          <rect class="machine-track" x="333" y="115" width="202" height="14" rx="6"/>
+          <rect x="336" y="67" width="195" height="10" rx="4" fill="url(#track)"/>
+          <rect x="336" y="117" width="195" height="10" rx="4" fill="url(#track)"/>
+          <path class="machine-body" d="M337 82L354 77H497L531 81L555 90V104L531 113L497 117H354L337 112Z"/>
+          <path class="machine-panel" d="M357 84H424V110H357L346 104V90Z"/>
+          <path class="machine-panel" d="M490 84H512L539 90V104L512 110H490Z"/>
+          <path class="machine-seam" d="M364 90H407M364 97H407M364 104H407M439 86V108M447 86V108"/>
+          <path class="machine-track" d="M547 88H574V106H547Z"/>
+          <rect class="machine-head" x="568" y="75" width="23" height="44" rx="6"/>
+          <path class="machine-seam" d="M570 84H589M570 93H589M570 102H589M570 111H589"/>
+        </g>
+
+        <rect class="machine-support" x="476" y="64" width="8" height="66" rx="2"/>
+        <path class="measure" d="M160 166v20M480 166v20M163 176h314"/>
+        <path class="measure-arrows" d="M161 176l12-6v12Z M479 176l-12-6v12Z"/>
+      </svg>
+      <figcaption>
+        <span class="measure-label" aria-hidden="true">Расстояние, м</span>
+        <span class="visually-hidden" aria-live="polite" aria-atomic="true">
+          <span data-plan="dead-end">При проходке тупиковым забоем расстояние измеряют от последних маркшейдерских точек до распора комбайна.</span>
+          <span data-plan="crosscut" hidden>При подрубке расстояние измеряют от устья камеры до распора комбайна.</span>
+        </span>
+      </figcaption>
+    </figure>
+
+    <section class="journal" aria-labelledby="journal-title">
+      <h2 id="journal-title">Журнал приёма и сдачи смен на комбайне</h2>
+      <p>Запишите измеренное расстояние в метрах.</p>
+      <div class="journal-field">
+        <span>Положение комбайна по маркшейдерским точкам</span>
+        <span class="journal-blank" aria-hidden="true"></span>
+      </div>
+      <details class="journal-original">
+        <summary>Фрагмент оригинала</summary>
+        <div class="journal-scan">
+          <img src="./journal-fragment.png" width="743" height="526" alt="Строка о положении комбайна находится между строками «Состояние кровли» и «Замечания по работе в течение смены»">
+        </div>
+      </details>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Перед щитом</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./devices.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="shell" id="app">
+    <p class="conditions" id="case-conditions" tabindex="-1"></p>
+
+    <div class="workspace">
+      <section class="stage" aria-label="Участок зарубки">
+        <div class="stage-toolbar">
+          <div class="views" role="group" aria-label="Ракурс">
+            <button type="button" data-view="overview" aria-controls="seat-view world scene-fallback" aria-pressed="false">Сверху</button>
+          </div>
+        </div>
+        <div class="stage-scene">
+          <div class="seat-view" id="seat-view" role="group" aria-label="Вид с места машиниста">
+            <img id="seat-wide" class="seat-view__image" src="./photos/operator-seat-narrow.jpg" width="1440" height="960" fetchpriority="high" alt="С места машиниста видны пульт, ограждение машины и узкий проход вдоль стенки выработки.">
+            <button type="button" class="console-hotspot" id="use-console" aria-controls="work-panel">Пульт</button>
+          </div>
+          <div id="world" role="group" aria-label="Выработка" hidden></div>
+          <div id="scene-fallback" class="scene-fallback" hidden>
+            <svg viewBox="0 0 720 360" aria-hidden="true">
+              <defs>
+                <pattern id="floor-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#33434e" stroke-width="1"/></pattern>
+                <linearGradient id="shell-grad"><stop stop-color="#cb562d"/><stop offset="1" stop-color="#e79c55"/></linearGradient>
+              </defs>
+              <rect width="720" height="360" rx="12" fill="#151d23"/>
+              <rect x="39" y="85" width="642" height="190" fill="url(#floor-grid)" stroke="#53606b" stroke-width="3"/>
+              <path d="M78 97H212V264H78Z" fill="#d7983024" stroke="#db9c41" stroke-width="2" stroke-dasharray="6 7"/>
+              <rect x="249" y="124" width="278" height="112" rx="18" fill="#171719" stroke="#55606b" stroke-width="3"/>
+              <rect x="242" y="143" width="272" height="73" rx="8" fill="url(#shell-grad)"/>
+              <rect x="223" y="114" width="12" height="132" rx="3" fill="#a2acb5"/>
+              <g class="fallback-cutter" fill="#dc5f34" stroke="#14191d" stroke-width="6">
+                <circle cx="193" cy="147" r="25"/><circle cx="193" cy="216" r="25"/>
+              </g>
+              <path d="M514 166H599V194H514" fill="#697481" stroke="#15181c" stroke-width="3"/>
+              <circle cx="617" cy="249" r="11" fill="#e3bc58"/><circle cx="637" cy="132" r="11" fill="#9fc8d4"/>
+              <g fill="#e5ebef" font-size="17" font-family="Arial, sans-serif">
+                <text x="74" y="50">Место осмотра</text><text x="208" y="272">Щит</text><text x="339" y="104">Комбайн</text><text x="585" y="111">Напарник</text>
+                <text x="521" y="278">Место управления</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <nav class="station-strip" aria-label="Рабочие точки">
+          <button type="button" data-station="controls" aria-pressed="true">Пульт</button>
+          <button type="button" data-station="starters" aria-pressed="false">Пускатели</button>
+          <button type="button" data-station="crew" aria-pressed="false">Напарник и зона</button>
+          <button type="button" data-station="shield" aria-pressed="false">Щит</button>
+        </nav>
+        <dl class="status" aria-label="Состояние оборудования">
+          <div><dt>Комбайн</dt><dd id="machine-status" data-tone="active">Работает</dd></div>
+          <div><dt>Маслостанция</dt><dd id="oil-status" data-tone="active">Включена</dd></div>
+          <div><dt>Пробный пуск</dt><dd id="trial-status">Не выполнялся</dd></div>
+        </dl>
+      </section>
+
+      <section class="work-panel" id="work-panel" aria-labelledby="work-title" hidden>
+        <h2 id="work-title">Пульт управления</h2>
+        <div class="actions" id="actions"></div>
+        <div class="feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+        <p class="completion" id="completion" hidden><strong>Отличная работа!</strong> Вы прошли обе смены и в каждой верно решили, можно ли зайти за щит.</p>
+        <button type="button" class="next-case" id="next-case" hidden>Следующая смена</button>
+      </section>
+    </div>
+
+  </main>
+
+  <dialog class="shift-transition" id="shift-transition" aria-labelledby="shift-title">
+    <h2 id="shift-title" tabindex="-1" autofocus>Следующая смена</h2>
+  </dialog>
+</body>
+</html>
